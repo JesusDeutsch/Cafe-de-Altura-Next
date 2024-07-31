@@ -18,11 +18,7 @@ function Form() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		console.log(user);
-		// user: { 
-		//        	 name="...",
-		//	         email="...",
-		//	         age="..."
-		//        }
+		
 	}
   
 	return (
