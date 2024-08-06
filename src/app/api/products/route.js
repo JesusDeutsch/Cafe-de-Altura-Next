@@ -27,3 +27,23 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Error al crear producto' }, { status: 500 });
   }
 }
+
+
+import { MongoClient } from 'mongodb';
+import cors from 'micro-cors';
+
+const corsHandler = cors({
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowHeaders: ['Content-Type', 'Authorization'],
+  origin: '*'  // Esto permite todas las origenes. Ajusta según tus necesidades.
+});
+
+const handler = async (req, res) => {
+  // Tu lógica de manejo de la API aquí
+  // Ejemplo:
+  const client = new MongoClient(process.env.MONGODB_URI);
+  await client.connect();
+  // ... resto de tu código ...
+};
+
+export default corsHandler(handler);
