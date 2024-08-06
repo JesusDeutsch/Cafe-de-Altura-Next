@@ -1,4 +1,4 @@
-import clientPromise from '../lib/mongodb';
+import clientPromise from '../lib/mongodb.mjs';
 import { ObjectId } from 'mongodb';
 
 const products = [
