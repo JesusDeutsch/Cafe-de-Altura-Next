@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const Shop = () => {
@@ -9,7 +10,7 @@ const Shop = () => {
     const getItems = async () => {
       try {
         const response = await fetch(
-          "https://cafe-de-altura-next-c4v4.vercel.app/api/products"
+          "https://cafe-de-altura-next-six.vercel.app/api/products"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -34,9 +35,12 @@ const Shop = () => {
         <h2>Items</h2>
         <ul>
           {items.map((item) => (
-            <li key={item.id}>{item.name}</li> 
+            <li key={item._id}>{item.brand}
+            <Image src={item.img_url} alt="coffe" width={21} height={25}/>
+            </li> 
           ))}
         </ul>
+        
       </div>
     );
   }
@@ -50,3 +54,6 @@ const Shop = () => {
 }
 
 export default Shop;
+
+
+
