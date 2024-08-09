@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className='flex items-center justify-between w-full h-[64px] bg-[#2b2a2b] text-white px-[12px]'>
         <div className='flex items-center justify-center gap-[7px] w-[214px] h-[36px]'>
 
-            <p className='flex items-center w-[186px] h-[36px] opacity-[86%] text-[24px] leading-[35px] font-normal gap-2'>cafedealtura.com<Image src="/ps_coffee-hot.png" alt="coffe" width={21} height={25} /> </p>
+        <Link href="/"><p className='flex items-center w-[186px] h-[36px] opacity-[86%] text-[24px] leading-[35px] font-normal gap-2'> cafedealtura.com<Image src="/ps_coffee-hot.png" alt="coffe" width={21} height={25} /> </p></Link>
             
 
 
@@ -19,8 +19,8 @@ const Navbar = () => {
             <li><Link href="/shop">Tienda</Link> </li>
             <li><Link href="/subscription">Suscripción</Link></li>
             <li><Link href="/Para-empresas">Para empresas</Link></li>
-            <li><Link href="Sobre-nosotros">Sobre nosotros</Link></li>
-            <li><Link href="contact">Contacto</Link></li>
+            <li><Link href="/about-us">Sobre nosotros</Link></li>
+            <li><Link href="/contact">Contacto</Link></li>
         </ul>
 
         <div className='flex items-center  w-[388px] h-[40px] gap-[24px]'>

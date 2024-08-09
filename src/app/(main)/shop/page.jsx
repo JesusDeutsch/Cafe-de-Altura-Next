@@ -36,7 +36,7 @@ const Shop = () => {
         <ul>
           {items.map((item) => (
             <li key={item._id}>{item.brand}
-            <Image src={item.url} alt="coffe" width={21} height={25}/>
+            <Image src={item.img_url} alt="coffe" width={21} height={25}/>
             </li> 
           ))}
         </ul>
