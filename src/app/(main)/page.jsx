@@ -1,6 +1,7 @@
 import { ClipboardCheck, Gift, Icon, Truck } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import coffeeTree from "../../../public/landing/coffee-tree.png"
 
 const Home = () => {
   return (
@@ -39,12 +40,12 @@ const Home = () => {
             </div>
           </div>
           <Image
-            src="/coffee-tree.png"
-            alt="arbol de cafe"
-            width={588}
-            height={390}
-            className="rooudned-[20px]"
-          />
+  src={coffeeTree}
+  alt="arbol de cafe"
+  width={588}
+  height={390}
+  className="rooudned-[20px]"
+/>
         </div>
       </div>
 
