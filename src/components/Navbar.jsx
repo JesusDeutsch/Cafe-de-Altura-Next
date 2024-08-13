@@ -3,13 +3,15 @@ import { Phone } from 'lucide-react';
 import Buttons from './Buttons';
 import Image from 'next/image';
 import Link from 'next/link';
+import hotCoffee from '../../public/navbar/ps_coffee-hot.png'
+import shoppingBag from '../../public/navbar/Carr.png'
 
 const Navbar = () => {
   return (
     <div className='flex justify-around items-center fixed w-full bg-[#2b2a2b] text-[#FFFFFF] h-16'>
         <div className='flex items-center justify-center gap-[7px] w-[214px] h-[36px]'>
 
-        <Link href="/"><p className='flex items-center w-[186px] h-[36px] opacity-[86%] text-[24px] leading-[35px] font-normal gap-2'> cafedealtura.com<Image src="/ps_coffee-hot.png" alt="coffe" width={21} height={25} /> </p></Link>
+        <Link href="/"><p className='flex items-center w-[186px] h-[36px] opacity-[86%] text-[24px] leading-[35px] font-normal gap-2'> cafedealtura.com<Image src={hotCoffee} alt="coffe" width={21} height={25} /> </p></Link>
             
 
 
@@ -37,7 +39,7 @@ const Navbar = () => {
 
         </div>
         <div>
-        <Image src="/Carr.png" alt="Shopping Cart" width={24} height={24} />        
+        <Image src={shoppingBag} alt="Shopping Cart" width={24} height={24} />        
         </div>
     </div>
   )

@@ -20,8 +20,8 @@ const Home = () => {
   }
 
   return (
-    <div className="pt-[48px]">
-      <div className="flex w-full h-[486px] items-center justify-center bg-[#e3ded74d]">
+    <div className=" w-auto pt-[48px]">
+      <div className="flex w-auto h-[486px] items-center justify-center bg-[#e3ded74d]">
         <div className="h-[390px] gap-6 flex justify-center items-center">
           <div className="flex justify-between flex-col w-[588px] h-[232px] gap-4">
             <h3 className="flex w-[588px] h-6 font-semibold text-lg leading-6 text-[#2a5b45]">
@@ -67,7 +67,7 @@ const Home = () => {
       {/* AQUI TERMINA EL LANDING Y EMPIEZAN LOS BENEFICIOS DE LA PAGINA*/}
 
       <div
-        className="w-full h-[380px] flex items-center justify-center flex-col gap-6"
+        className="w-auto h-[380px] flex items-center justify-center flex-col gap-6"
         style={{
           backgroundImage: `url(/conditions/coffebackground.png)`,
           backgroundSize: "cover",
@@ -197,13 +197,13 @@ const Home = () => {
 
 
 
-      <div className="w-full min-h-[421px] flex flex-col items-center justify-center bg-[#2a5b45] gap-6 py-[48px] px-386px">
+      <div className="w-auto min-h-[421px] flex flex-col items-center justify-center bg-[#2a5b45] gap-6 py-[48px] px-386px">
       <h2 className="flex w-[228px] h-[93px] text-2xl font-medium leading-7 text-[white] ">Preguntas frecuentes</h2>
       
         <Accordion type="single" collapsible className="flex flex-col items-center justify-center w-[668px] min-h-[216px] gap-4 ">
-          <AccordionItem value="item-1" className="flex flex-col items-center w-[668px] h-auto gap-4 bg-[white]  text-[#2b2a2b] p-6 rounded-[10px] overflow-hidden">
+        <AccordionItem value="item-1" className="flex flex-col items-center w-[668px] h-auto gap-4 bg-[white]  text-[#2b2a2b] p-6 rounded-[10px] overflow-hidden">
             <AccordionTrigger className="w-[620px] h-6 flex no-underline hover:no-underline"><h3 className=" flex w-[290px] h-6 font-semibold text-lg leading-6">¿Cómo hago el pedido?</h3></AccordionTrigger>
-            <AccordionContent className="w-[620px] h-8 font-normal text-xs leading-4 text-[#2b2a2b] border-t-2 pt-4">
+            <AccordionContent className="w-[620px] h-auto font-normal text-xs leading-4 text-[#2b2a2b] border-t-2 pt-4">
           
           Selecciona el café que desees probar y completa el proceso de
             compra. Si lo prefieres, te preguntaremos cada cuánto quieres que te
@@ -246,7 +246,7 @@ const Home = () => {
       </div>
 
       <div>
-        saddasdasda
+        SEGUIREMOS MAÑANA
       </div>
     </div>
   );
