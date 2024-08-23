@@ -1,10 +1,11 @@
 import { Mail, Phone } from "lucide-react";
 import React from "react";
+import SectionForm from "../(main)/SectionForm"
 
 const SplitTwoTone = () => {
   return (
-    <div className="flex justify-around w-full h-[552px] bg-[#e3ded7]">
-      <div className="flex items-center w-[1200px] h-[552px] gap-6">
+    <div className="flex justify-around w-full h-[652px] bg-[#e3ded7]">
+      <div className="flex items-center w-[1200px] h-[652px] gap-6">
         <div className="flex flex-col items-center justify-center w-[588px] h-80 gap-8">
           <div className="flex flex-col w-[588px] h-[68px] gap-3">
             <h3 className="w-[588px] h-6 font-semibold text-lg leading-6 text-gray-900">Entra en contacto con nosotros</h3>
@@ -22,7 +23,7 @@ const SplitTwoTone = () => {
               742 Evergreen Terrace <br />
               Springfield, OR 12345
             </p>
-            <div className="flex items-center w-[588px] h-6 gap-3">
+            <div className="flex items-center w-[588px] h-6 gap-2">
             <Phone  width={24} height={24}/>
               <p>+1 (555) 123-4567</p>
             </div>
@@ -36,9 +37,9 @@ const SplitTwoTone = () => {
             </p>
           </div>
         </div>
-        <div className="flex justify-center items-center w-[588px] h-[552px] bg-[white] shadow-[0px_4px_4px_0px_#00000040]">
-          
-        </div>
+          <div><SectionForm/></div>
+
+        
       </div>
     </div>
   );
