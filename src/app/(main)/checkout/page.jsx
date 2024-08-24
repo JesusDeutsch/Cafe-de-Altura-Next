@@ -1,9 +1,12 @@
 import React from 'react'
+import CheckoutForm from './CheckoutForm'
 
-const checkout = () => {
+const page = () => {
   return (
-    <div>checkout</div>
+    <div>
+      <CheckoutForm/ >
+    </div>
   )
 }
 
-export default checkout
+export default page

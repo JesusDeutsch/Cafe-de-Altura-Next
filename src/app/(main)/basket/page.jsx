@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import Basket from "./Basket";
 
-const basket = () => {
+
+const checkOut = () => {
+  
+
   return (
-    <div>basket</div>
+    <div className="min-h-[100vh]">
+
+      <Basket/>
+
+    </div>
   )
 }
 
-export default basket
+export default checkOut

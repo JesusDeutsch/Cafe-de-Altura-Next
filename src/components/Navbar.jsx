@@ -1,12 +1,27 @@
-import React from "react";
+"use client"
+import React, { useContext, useState } from "react";
 import { Phone } from "lucide-react";
 import Buttons from "./Buttons";
 import Image from "next/image";
 import Link from "next/link";
 import hotCoffee from "../../public/home-page/navbar/ps_coffee-hot.png";
 import shoppingBag from "../../public/home-page/navbar/Carr.png";
+import ShoppingCart from "./ShoppingCart";
+import { DataContext } from "../app/contexts/DataContext";
+
+
 
 const Navbar = () => {
+
+  const {cart} =useContext(DataContext);
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleDiv = () => {
+    setIsVisible(!isVisible);
+  };
+
+
   return (
     <div className="flex justify-around items-center fixed w-full bg-[#2b2a2b] text-[#FFFFFF] h-16">
       <div className="flex items-center justify-center gap-[7px] w-[214px] h-[36px]">
@@ -50,11 +65,35 @@ const Navbar = () => {
           <Buttons textButton={"Iniciar sesión"} />
         </div>
       </div>
-      <div>
-        <Image src={shoppingBag} alt="Shopping Cart" width={24} height={24} />
-      </div>
+
+      <div
+          className={`absolute min-w-[35vh] min-h-[100vh] top-[64px] right-0 bg-white text-black p-4 rounded border-[2px] transition-all duration-500 ease-in-out ${isVisible ? ' ' : 'hidden'}`}>
+
+          <ShoppingCart/>
+
+        </div>
+        <div className="relative items-center justify-center gap-1">
+        <Image src={shoppingBag} alt="Shopping Cart" width={24} height={24} className="cursor-pointer" onClick={toggleDiv}/>
+        <div>
+        {cart.length > 0 && (
+          <div className="absolute bottom-0 left-0 bg-red-500 rounded-full h-2 w-2 flex items-center justify-center text-xs">
+            {cart.quantity}
+          </div>
+        )}
+        </div>
+      
+          
+        </div>      
     </div>
   );
 };
 
 export default Navbar;
+
+
+
+
+
+
+
+

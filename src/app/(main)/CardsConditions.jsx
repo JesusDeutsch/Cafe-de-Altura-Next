@@ -5,7 +5,7 @@ import { ClipboardCheck, Gift, Truck } from "lucide-react";
 const CardsConditions = () => {
   return (
     <div
-    className="w-auto h-[380px] flex items-center justify-center flex-col gap-6"
+    className="w-full h-[380px] flex items-center justify-center flex-col gap-6"
     style={{
       backgroundImage: `url(/home-page/conditions/coffebackground.png)`,
       backgroundSize: "cover",
