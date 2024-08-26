@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import Order from './Order'
 
-const succes = () => {
-  return (
-    <div>
-    <div>succes page</div>
-        </div>
-  )
+const success = () => {
+
+return(
+  <div className=''>
+    <Order/>
+  </div>
+)
 }
 
-export default succes
+export default success

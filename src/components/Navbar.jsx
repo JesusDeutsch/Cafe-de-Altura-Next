@@ -20,6 +20,7 @@ const Navbar = () => {
   const toggleDiv = () => {
     setIsVisible(!isVisible);
   };
+  
 
 
   return (

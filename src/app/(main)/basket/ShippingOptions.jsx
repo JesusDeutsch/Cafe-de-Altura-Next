@@ -7,7 +7,10 @@ import { DataContext } from "../../contexts/DataContext"; // Asegúrate de que l
 const ShippingOptions = () => {
   const { shippingOption, updateShippingOption, getShippingCost } = useContext(DataContext);
   
-  const { register, watch } = useForm({
+  const { 
+    register, 
+    watch
+   } = useForm({
     defaultValues: {
       shippingOption: shippingOption,
     },
