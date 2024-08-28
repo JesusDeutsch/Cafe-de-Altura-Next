@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from "react";
-import PaymentTable from "../checkOut/PaymentTable";
+import PaymentTable from "./PaymentTable";
 
 
 const CheckOut = () => {
@@ -26,7 +26,6 @@ const CheckOut = () => {
     </div>
   );
 };
-
 
 
 
