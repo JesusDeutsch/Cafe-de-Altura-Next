@@ -1,6 +1,7 @@
 'use client'
 import React, { useContext } from 'react'
 import { DataContext } from "../../contexts/DataContext";
+import PaymentTable from './PaymentTable';
 
 
 
@@ -50,8 +51,10 @@ const Total = ({ onSubmit, handleSubmit }) => {
             </button>
          
           </div>
+          <PaymentTable onFormChange={handleFormChange} />
         </div>
       );
+      
     }
     
 
