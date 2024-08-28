@@ -1,7 +1,6 @@
 'use client';
 import React, { useState } from "react";
 import PaymentTable from "./PaymentTable";
-import Buttons from "@/components/Buttons";
 
 
 const CheckOut = () => {

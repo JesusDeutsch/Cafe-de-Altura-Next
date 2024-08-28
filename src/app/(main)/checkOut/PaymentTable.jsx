@@ -13,6 +13,8 @@ const PaymentTable = ({ onFormChange }) => {
     register,
     handleSubmit,
     setValue,
+    control,
+    watch,
     reset,
     formState: { errors },
   } = useForm();
