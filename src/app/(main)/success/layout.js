@@ -14,5 +14,4 @@ export default function SuccessLayout({ children }) {
 
   return <>{children}</>;
 
-  //test
-}
+  //te}
