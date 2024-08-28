@@ -10,7 +10,6 @@ const checkOut = () => {
     <div className="min-h-screen">
 
       <Basket/>
-      <Total/>
 
     </div>
   )
