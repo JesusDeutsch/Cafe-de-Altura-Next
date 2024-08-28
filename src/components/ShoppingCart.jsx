@@ -10,11 +10,11 @@ const ShoppingCart = () => {
     useContext(DataContext);
 
   return (
-    <div className="w-full h-auto pt-8 flex flex-col items-center gap-4">
+    <div className="w-full h-screen pt-8 flex flex-col items-center gap-4">
       <h2 className="text-2xl font-semibold">Carrito de Compras</h2>
-
+      
       {cart.length > 0 ? (
-        <div className="w-full flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4 overflow-y-scroll scroll-no-spinner pb-20">
           {cart.map((item, index) => (
             <div
               key={index}

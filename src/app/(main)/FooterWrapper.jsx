@@ -40,7 +40,7 @@ const FooterWrapper = () => {
             </p>
             <p className="h-4 font-semibold text-sm leading-4">Contacto</p>
           </div>
-          <div className="flex flex-col absolute w-[255.33px] h-20 gap-4 left-[800px] right-[76.67px] top-[3px] bottom-[69px]">
+          <div className="flex flex-col absolute w-[255.33px] h-20 gap-4 left-[800px] right-[76.67px] top-[3px] bottom-[69px] -z-10">
             <p className="h-4 font-semibold text-sm leading-4">
               Política de privacidad
             </p>
