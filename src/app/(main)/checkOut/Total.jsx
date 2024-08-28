@@ -3,8 +3,6 @@ import React, { useContext } from 'react'
 import { DataContext } from "../../contexts/DataContext";
 import PaymentTable from './PaymentTable';
 
-
-
 const Total = ({ onSubmit, handleSubmit }) => {
     const { getCartTotal, getShippingCost, shippingOption } = useContext(DataContext);
   

@@ -1,5 +1,6 @@
 import React from "react";
 import Basket from "./Basket";
+import Total from "../checkOut/Total";
 
 
 const checkOut = () => {
@@ -9,6 +10,7 @@ const checkOut = () => {
     <div className="min-h-screen">
 
       <Basket/>
+      <Total/>
 
     </div>
   )
