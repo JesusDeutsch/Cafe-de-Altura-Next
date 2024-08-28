@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from "react";
+import Total from "./Total";
 // import PaymentTable from "./PaymentTable";
 
 
@@ -20,6 +21,7 @@ const CheckOut = () => {
       </h2>
 
       <div className="flex justify-between w-[1200px] h-auto gap-6">
+        <Total/>
         {/* <PaymentTable onFormChange={handleFormChange} /> */}
       </div>
       
