@@ -2,13 +2,14 @@ import Image from "next/image";
 import React from "react";
 import hotCoffee from "../../../public/home-page/navbar/ps_coffee-hot.png";
 import { Mail, Phone } from "lucide-react";
+import Link from "next/link";
 const FooterWrapper = () => {
   return (
     <div className="flex flex-col items-center justify-between w-full h-[310px] bg-[#1f1815]">
       <div className="flex flex-col w-[1200px] h-[204px] gap-4 ml-10 mt-[28.61px]">
         <div className="flex items-center w-72 h-9 gap-[7.33px]">
           <p className="w-[186px] h-9 font-normal text-[23.46px] leading-[35.19px] text-[white]">
-            cafedealtura.com
+          <Link href="/"> cafedealtura.com </Link>
           </p>
           <Image src={hotCoffee} alt="coffe" width={21} height={25} />
         </div>

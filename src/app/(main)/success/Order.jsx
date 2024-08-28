@@ -6,7 +6,7 @@ import Link from "next/link";
 import React, { useContext } from "react";
 
 const Order = () => {
-  const { cart, getCartTotal, getShippingCost, shippingOption } =
+  const { cart, getCartTotal, getShippingCost, shippingOption, clearLocalStorage  } =
     useContext(DataContext);
 
   const subtotal = getCartTotal().toFixed(2);
@@ -99,7 +99,7 @@ const Order = () => {
 
       <Link href="/shop">
         <div className="flex justify-center items-center w-[158px] h-10 rounded-[4px] gap-2 bg-[#2A5B45] text-white">
-          <p className="font-semibold	text-[14px] leading-4">
+          <p className="font-semibold	text-[14px] leading-4"  onClick={clearLocalStorage}>
             Volver a la tienda
           </p>
         </div>

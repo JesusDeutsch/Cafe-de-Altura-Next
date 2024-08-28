@@ -11,8 +11,10 @@ import {
 } from "@/components/ui/accordion";
 import Image from "next/image";
 import bizum from "../../../../public/home-page/checkOut/bizum.png";
+import Total from "./Total";
+import { usePathname, useRouter } from "next/navigation";
 
-const PaymentTable = ({onFormChange}) => {
+const PaymentTable = ({ onFormChange }) => {
   const {
     register,
     handleSubmit,
@@ -23,24 +25,31 @@ const PaymentTable = ({onFormChange}) => {
     formState: { errors },
   } = useForm();
 
-  const formValues = watch()
+  const router = useRouter();
+  const pathname = usePathname();
+
+  console.log("ESTE ES PATHNAME", pathname);
+
+  if (pathname.includes("aleman")) {
+    console.log("ENTRO AL IF");
+  }
+  
   const options = countryList().getData();
   const [selectedPayment, setSelectedPayment] = useState("debitCard");
   const [openItem, setOpenItem] = useState("item-debitCard");
 
-  // useEffect(() => {
-  //   onFormChange(formValues);
-  // }, [formValues, onFormChange]);
+  // Este efecto inicializa el método de pago al cargar el componente
+  useEffect(() => {
+    setValue("paymentMethod", "debitCard");
+  }, [setValue]);
 
-  // useEffect(() => {
-  //   setValue("paymentMethod", "debitCard");
-  // }, [setValue]);
-
+  // Esta función maneja los cambios en el método de pago
   const handlePaymentChange = (e, value) => {
     e.stopPropagation();
     setSelectedPayment(value);
     setValue("paymentMethod", value);
     setOpenItem(`item-${value}`);
+    onFormChange({ ...watch(), paymentMethod: value }); // Actualiza el formulario al cambiar el método de pago
   };
 
   const handleAccordionToggle = (value) => {
@@ -50,29 +59,25 @@ const PaymentTable = ({onFormChange}) => {
   const onSubmit = (data) => {
     localStorage.setItem("formData", JSON.stringify(data));
     console.log(data);
+    router.push("/success")
     reset();
   };
 
   return (
-    <div
-      className="flex flex-col w-[792px] h-auto gap-6 p-2"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <h3 className="w-[231px] h-[24px] text-[18px] font-semibold leading-6 text-black">
-        Seleccionar método de pago
-      </h3>
+    <form className="flex">
+     
 
-      <Accordion
-        type="single"
-        collapsible
-        value={openItem}
-        onValueChange={handleAccordionToggle}
-        className="flex flex-col w-[776px] h-auto gap-4"
-      >
-        <AccordionItem value="item-debitCard">
-          <AccordionTrigger className="flex w-[776px] h-9 no-underline hover:no-underline cursor-pointer custom-no-arrow">
-            <div className="flex items-center gap-4 pb-4 w-full">
+        <div className="flex flex-col w-[792px] h-auto gap-6 p-2">
+        <h3 className="w-[231px] h-[24px] text-[18px] font-semibold leading-6 text-black">
+          Seleccionar método de pago
+        </h3>
+
+        <div className="flex flex-col w-[776px] h-auto gap-4">
+          {/* Tarjeta de débito */}
+          <div className="flex flex-col items-center justify-center">
+            <div className="flex items-center gap-4 w-full cursor-pointer">
               <input
+                name="acordeon"
                 type="radio"
                 id="debitCard"
                 value="debitCard"
@@ -80,160 +85,162 @@ const PaymentTable = ({onFormChange}) => {
                 checked={selectedPayment === "debitCard"}
                 onChange={(e) => handlePaymentChange(e, "debitCard")}
                 className="w-4 h-4 accent-[#2A5B45]"
-                onClick={(e) => e.stopPropagation()}
               />
               <label
                 htmlFor="debitCard"
-                className="flex flex-col w-[665px] h-9 gap-1 cursor-pointer"
+                className="flex items-center w-[665px] h-9 gap-1 cursor-pointer"
                 onClick={(e) => handlePaymentChange(e, "debitCard")}
               >
-                <p className="flex font-semibold text-[14px] h-4">
-                  Tarjeta de débito
-                </p>
-                <p className="flex font-normal w-[202px] h-4 text-[14px] leading-4">
+                <div>
+
+                <p className="flex font-semibold text-[14px] h-4">Tarjeta de débito</p>
+                {selectedPayment === "debitCard" && (<p className="flex font-normal w-[202px] h-4 text-[14px] leading-4">
                   Opción estándar sin seguimiento
-                </p>
+                </p>)}
+                </div>
               </label>
             </div>
-          </AccordionTrigger>
-          <AccordionContent className="w-[620px] h-auto font-normal text-xs leading-4 text-[#2b2a2b] border-none pt-4">
-            <div className="flex flex-col w-[279px] h-[55px] gap-[3px]">
-              <label htmlFor="owner" className="w-9 h-4">
-                <p className="font-normal text-xs text-gray-700">Titular</p>
-              </label>
-              <input
-                type="text"
-                className="w-[279px] min-h-9 px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md hover:border-[#9b9ea3]  focus:outline-[#3f8f6b] solid 2px focus:shadow-[0px_1px_2px_0px_#0000000d]"
-                placeholder="Nombre del titular"
-                {...register("owner", {
-                  required: {
-                    value: true,
-                    message: "Titular es requerido",
-                  },
-                })}
-              />
+            {selectedPayment === "debitCard" && (
+              <div className="flex flex-col gap-4 w-[620px] h-auto font-normal text-xs leading-4 text-[#2b2a2b] border-none pt-4">
+                <div className="flex flex-col w-[279px] h-[55px] gap-[3px]">
+                  <label htmlFor="owner" className="w-9 h-4">
+                    <p className="font-normal text-xs text-gray-700">Titular</p>
+                  </label>
+                  <input
+                    type="text"
+                    className="w-[279px] min-h-9 px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md hover:border-[#9b9ea3] focus:outline-[#3f8f6b] solid 2px focus:shadow-[0px_1px_2px_0px_#0000000d]"
+                    placeholder="Nombre del titular"
+                    {...register("owner", {
+                      required: {
+                        value: true,
+                        message: "Titular es requerido",
+                      },
+                    })}
+                  />
+                  {errors.owner && (
+                    <span className="block w-[210px] text-red-600 text-sm">
+                      {errors.owner.message}
+                    </span>
+                  )}
+                </div>
 
-              {errors.owner && (
-                <span className="block w-[210px] text-red-600 text-sm">
-                  {errors.owner.message}
-                </span>
-              )}
-            </div>
+                <div className="flex flex-col w-[279px] h-[55px] gap-[3px] pt-2">
+                  <label htmlFor="numberCard" className="w-9 h-4">
+                    <p className="font-normal text-xs text-gray-700">
+                      Número de la tarjeta
+                    </p>
+                  </label>
+                  <input
+                    type="number"
+                    className="w-[279px] min-h-9 px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md hover:border-[#9b9ea3] focus:outline-[#3f8f6b] focus:shadow-[0px_1px_2px_0px_#0000000d] no-spinner"
+                    placeholder="1234 1234 1234 1234"
+                    {...register("numberCard", {
+                      required: {
+                        value: true,
+                        message: "Número de la tarjeta es requerido",
+                      },
+                    })}
+                  />
+                  {errors.numberCard && (
+                    <span className="block w-[210px] text-red-600 text-sm">
+                      {errors.numberCard.message}
+                    </span>
+                  )}
+                </div>
 
-            <div className="flex flex-col w-[279px] h-[55px] gap-[3px] pt-2">
-              <label htmlFor="numberCard" className="w-9 h-4">
-                <p className="font-normal text-xs text-gray-700">
-                  Número de la tarjeta
-                </p>
-              </label>
-              <input
-                type="number"
-                className="w-[279px] min-h-9 px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md hover:border-[#9b9ea3] focus:outline-[#3f8f6b] focus:shadow-[0px_1px_2px_0px_#0000000d] no-spinner"
-                placeholder="1234 1234 1234 1234"
-                {...register("numberCard", {
-                  required: {
-                    value: true,
-                    message: "Número de la tarjeta es requerido",
-                  },
-                })}
-              />
-              {errors.numberCard && (
-                <span className="block w-[210px] text-red-600 text-sm">
-                  {errors.numberCard.message}
-                </span>
-              )}
-            </div>
+                <div className="flex pt-2 pb-4 gap-6">
+                  <div className="flex flex-col w-[128px] h-[55px] gap-[3px] pt-2">
+                    <label htmlFor="expirationDate" className=" h-4">
+                      <p className="flex min-w-9 font-normal text-xs text-gray-700">
+                        Fecha de caducidad
+                      </p>
+                    </label>
+                    <input
+                      type="number"
+                      className="w-[128px] min-h-[36px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md hover:border-[#9b9ea3] focus:outline-[#3f8f6b] focus:shadow-[0px_1px_2px_0px_#0000000d] no-spinner"
+                      placeholder="MM / YY"
+                      {...register("expirationDate", {
+                        required: {
+                          value: true,
+                          message: "Fecha de caducidad es requerida",
+                        },
+                      })}
+                    />
+                    {errors.expirationDate && (
+                      <span className="block w-[210px] text-red-600 text-sm">
+                        {errors.expirationDate.message}
+                      </span>
+                    )}
+                  </div>
 
-            <div className="flex pt-2 pb-4 gap-6">
-              <div className="flex flex-col w-[128px] h-[55px] gap-[3px] pt-2">
-                <label htmlFor="expirationDate" className=" h-4">
-                  <p className="flex min-w-9 font-normal text-xs text-gray-700">
-                    Fecha de caducidad
-                  </p>
-                </label>
-                <input
-                  type="number"
-                  className="w-[128px] min-h-[36px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md hover:border-[#9b9ea3] focus:outline-[#3f8f6b] focus:shadow-[0px_1px_2px_0px_#0000000d] no-spinner"
-                  placeholder="MM / YY"
-                  {...register("expirationDate", {
-                    required: {
-                      value: true,
-                      message: "Fecha de caducidad es requerida",
-                    },
-                  })}
-                />
-                {errors.expirationDate && (
-                  <span className="block w-[210px] text-red-600 text-sm">
-                    {errors.expirationDate.message}
-                  </span>
-                )}
+                  <div className="flex flex-col w-[128px] h-[55px] gap-[3px] pt-2">
+                    <label htmlFor="cvc" className=" h-4">
+                      <p className="flex min-w-9 font-normal text-xs text-gray-700">
+                        CVC
+                      </p>
+                    </label>
+                    <input
+                      className="w-[128px] min-h-[36px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md hover:border-[#9b9ea3] focus:outline-[#3f8f6b] focus:shadow-[0px_1px_2px_0px_#0000000d] no-spinner"
+                      type="text"
+                      {...register("cvc", {
+                        required: true,
+                        pattern: /^\d{3}$/,
+                        maxLength: 3,
+                      })}
+                      placeholder="123"
+                      maxLength={3}
+                      inputMode="numeric"
+                      onInput={(e) => {
+                        e.target.value = e.target.value.replace(/\D/g, "");
+                      }}
+                    />
+                    {errors.cvc && (
+                      <span className="block w-[210px] text-red-600 text-sm">
+                        {errors.cvc.message}
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
+            )}
+          </div>
 
-              <div className="flex flex-col w-[128px] h-[55px] gap-[3px] pt-2">
-                <label htmlFor="cvc" className=" h-4">
-                  <p className="flex min-w-9 font-normal text-xs text-gray-700">
-                    CVC
-                  </p>
-                </label>
-                <input
-                  className="w-[128px] min-h-[36px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md hover:border-[#9b9ea3] focus:outline-[#3f8f6b] focus:shadow-[0px_1px_2px_0px_#0000000d] no-spinner"
-                  type="text"
-                  {...register("cvc", {
-                    required: true,
-                    pattern: /^\d{3}$/,
-                    maxLength: 3,
-                  })}
-                  placeholder="123"
-                  maxLength={3}
-                  inputMode="numeric"
-                  onInput={(e) => {
-                    e.target.value = e.target.value.replace(/\D/g, "");
-                  }}
-                />
-                {errors.cvc && (
-                  <span className="block w-[210px] text-red-600 text-sm">
-                    {errors.cvc.message}
-                  </span>
-                )}
-              </div>
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="item-bankTransfer">
-          <AccordionTrigger className="flex w-[776px] h-9 no-underline hover:no-underline cursor-pointer custom-no-arrow">
-            <div className="flex items-center gap-4 pb-4 w-full">
+          {/* Transferencia bancaria */}
+          <div className="flex flex-col">
+            <div className="flex items-center w-full cursor-pointer">
               <input
+                name="acordeon"
                 type="radio"
                 id="bankTransfer"
                 value="bankTransfer"
                 {...register("paymentMethod")}
                 checked={selectedPayment === "bankTransfer"}
                 onChange={(e) => handlePaymentChange(e, "bankTransfer")}
-                className="w-4 h-4 accent-[#2A5B45]"
-                onClick={(e) => e.stopPropagation()}
+                className="flex items-centerw-4 h-4 accent-[#2A5B45]"
               />
               <label
                 htmlFor="bankTransfer"
-                className="flex flex-col w-[665px] h-9 gap-1 cursor-pointer"
+                className="flex flex-col w-[665px] h-auto gap-1 pb-0 cursor-pointer"
                 onClick={(e) => handlePaymentChange(e, "bankTransfer")}
               >
                 <p className="flex font-semibold text-[14px] h-4">
                   Transferencia bancaria a la cuenta ES12 1234 1234 123457890
                 </p>
-                <p className="flex font-normal w-auto h-4 text-[14px] leading-4">
+            {selectedPayment === "bankTransfer" && (
+              <div className="w-[620px] h-auto font-normal text-xs leading-4 text-[#2b2a2b] border-none pt-4">
+                <p className="flex item-center font-normal w-auto h-4 text-[14px]">
                   Será necesario recibir el comprobante de la transferencia para
-                  preparar tu pedido
+                  preparar tu pedido.
                 </p>
+              </div>
+            )}
               </label>
             </div>
-          </AccordionTrigger>
-          <AccordionContent className="w-0 h-0 p-0"></AccordionContent>
-        </AccordionItem>
+          </div>
 
-        <AccordionItem value="item-bizum" className="border-b-0">
-          <AccordionTrigger className="flex w-[776px] h-9 no-underline hover:no-underline cursor-pointer custom-no-arrow">
-            <div className="flex items-center gap-4 pb-2 w-full">
+          {/* Bizum */}
+          <div className="flex flex-col">
+            <div className="flex items-center gap-4 w-full cursor-pointer">
               <input
                 type="radio"
                 id="bizum"
@@ -242,7 +249,6 @@ const PaymentTable = ({onFormChange}) => {
                 checked={selectedPayment === "bizum"}
                 onChange={(e) => handlePaymentChange(e, "bizum")}
                 className="w-4 h-4 accent-[#2A5B45]"
-                onClick={(e) => e.stopPropagation()}
               />
               <label
                 htmlFor="bizum"
@@ -253,10 +259,8 @@ const PaymentTable = ({onFormChange}) => {
                 <Image src={bizum} alt="Bizum" width={70} height={30} />
               </label>
             </div>
-          </AccordionTrigger>
-          <AccordionContent className="w-0 h-0 p-0"></AccordionContent>
-        </AccordionItem>
-      </Accordion>
+          </div>
+        </div>
 
       <h3 className="w-[149px] h-6 text-[18px] font-semibold leading-6">
         Dirección de envío
@@ -556,7 +560,9 @@ const PaymentTable = ({onFormChange}) => {
           )}
         </div>
       </div>
-    </div>
+      </div>
+      <Total handleSubmit={handleSubmit} onSubmit={onSubmit} />
+    </form>
   );
 };
 

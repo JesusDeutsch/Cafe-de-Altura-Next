@@ -40,6 +40,10 @@ export default function DataContextProvider({ children }) {
     loadCartItems();
   }, []);
 
+  const getCartItemsCount = () => {
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  };
+
   //------------ Añadir productos al carrito
   const addToCart = (product) => {
     const updatedCart = [...cart];
@@ -86,21 +90,28 @@ export default function DataContextProvider({ children }) {
     return cart.reduce((total, product) => total + (product.price["$numberDecimal"] * product.quantity), 0);
   };
 
-    // Nueva función para obtener el costo de envío
+    //--------- Nueva función para obtener el costo de envío
     const getShippingCost = () => {
       return shippingOption === 'express' ? 9.00 : 0.00;
     };
   
-    // Nueva función para obtener el total incluyendo el envío
+    //---------- Nueva función para obtener el total incluyendo el envío
     const getTotalWithShipping = () => {
       return getCartTotal() + getShippingCost();
     };
   
-    // Función para actualizar la opción de envío
+    //------------ Función para actualizar la opción de envío
     const updateShippingOption = (option) => {
       setShippingOption(option);
     };
-  
+    
+
+    //---------------- Vacia el local storage
+
+    const clearLocalStorage = () => {
+      localStorage.clear();
+      setCart([]); 
+    };
 
 
 
@@ -117,7 +128,9 @@ export default function DataContextProvider({ children }) {
         shippingOption,
         updateShippingOption,
         getShippingCost,
-        getTotalWithShipping
+        getTotalWithShipping,
+        getCartItemsCount,
+        clearLocalStorage
       }}>
         {children}
       </DataContext.Provider>

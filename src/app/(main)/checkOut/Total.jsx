@@ -1,11 +1,10 @@
 'use client'
 import React, { useContext } from 'react'
 import { DataContext } from "../../contexts/DataContext";
-import Link from 'next/link';
 
 
 
-const Total = ({ onSubmit }) => {
+const Total = ({ onSubmit, handleSubmit }) => {
     const { getCartTotal, getShippingCost, shippingOption } = useContext(DataContext);
   
     const subtotal = getCartTotal().toFixed(2);
@@ -44,12 +43,10 @@ const Total = ({ onSubmit }) => {
                 </div>
                 </div>
           <div className='flex items-center justify-center gap-4 w-[310px] h-10 mt-5'>
-            <button className='flex items-center justify-center min-w-[129px] h-10 bg-[#2A5B45] rounded-[4px]' onClick={onSubmit}>
-            <Link href={"/success"}>
+            <button type='button' className='flex items-center justify-center min-w-[129px] h-10 bg-[#2A5B45] rounded-[4px]' onClick={handleSubmit(onSubmit)}>
                 <p className='flex text-white h-4 font-semibold leading-4'>
                 Pagar y realizar pedido
                 </p>
-                </Link>
             </button>
          
           </div>
