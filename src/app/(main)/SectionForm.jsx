@@ -78,9 +78,9 @@ const Form = () => {
               <option value="VE">VE</option>
             </select>
             <input
-              type="tel"
+              type="number"
               {...register("numberPhone", {required:{value:true, message:"Teléfono es requerido"}})}
-              className="border-0 outline-none px-2.5"
+              className="border-0 outline-none px-2.5 no-spinner"
               placeholder="+1 (555) 987-6543"
             />
 

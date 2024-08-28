@@ -10,7 +10,7 @@ const ShoppingCart = () => {
     useContext(DataContext);
 
   return (
-    <div className="w-full h-auto p-4 flex flex-col items-center gap-4">
+    <div className="w-full h-auto pt-8 flex flex-col items-center gap-4">
       <h2 className="text-2xl font-semibold">Carrito de Compras</h2>
 
       {cart.length > 0 ? (
@@ -34,7 +34,7 @@ const ShoppingCart = () => {
                   <div>
                   <h3 className="text-sm font-semibold">{item.brand}</h3>
                   <p className="text-sm font-normal">
-                    {(item.price["$numberDecimal"] * item.quantity).toFixed(2)}€
+                    {(item.price["$numberDecimal"])}€
                   </p>
                   </div>
                 </div>

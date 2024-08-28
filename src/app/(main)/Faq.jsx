@@ -16,7 +16,7 @@ const Faq = () => {
         </h2>
 
         <Accordion
-          type="single"
+          type="multiple"
           collapsible
           className="flex flex-col items-center justify-center w-[668px] min-h-[216px] gap-4 "
         >

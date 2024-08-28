@@ -87,5 +87,22 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.no-spinner': {
+          /* Para Chrome, Safari y Edge */
+          '&::-webkit-inner-spin-button, &::-webkit-outer-spin-button': {
+            '-webkit-appearance': 'none',
+            'margin': '0',
+          },
+          /* Para Firefox */
+          '-moz-appearance': 'textfield',
+          /* Opcionalmente, para asegurar compatibilidad */
+          'appearance': 'textfield',
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 }

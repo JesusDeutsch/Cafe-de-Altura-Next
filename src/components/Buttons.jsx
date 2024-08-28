@@ -10,7 +10,9 @@ const Buttons = ({typeButton, textButton}) => {
            case 'greenButton':
               return 'flex items-center justify-center text-white text-[] leading-[16px] rounded-[4px] w-[168px] h-[40px] bg-[#2A5B45] px-[48px] py-[40px]';
            case 'addButton':
-              return 'flex items-center justify-center text-white leading-[16px] rounded-[4px] p-[8px] bg-[#2A5B45B2] w-[60px] h-[32px] bg-opacity-70 hover:bg-[#2A5B45]';
+              return 'flex items-center justify-center text-white h-4 leading-[16px] rounded-[4px] p-[8px] bg-[#2A5B45B2] w-[60px] bg-opacity-70 hover:bg-[#2A5B45]';
+              case 'checkOut':
+               return 'flex items-center justify-center min-w-[129px] h-10 bg-[#2A5B45] rounded-[4px]'
            default:
               return 'flex items-center justify-center  text-white rounded-[4px] w-[130px] h-[40px]  bg-[#515051] text-[14px] leading-[16px] font-semibold';
         }

@@ -8,7 +8,6 @@ const ProductsTable = () => {
   const { cart, handleAddOne, handleRemoveOne, getCartTotal } =
     useContext(DataContext);
 
-  
 
   return (
       <div className="flex flex-col  min-w-[792px]] h-auto p-2 gap-6">
@@ -58,7 +57,7 @@ const ProductsTable = () => {
               </div>
 
               <div className="w-[54px] h-[24px] leading-6 size-[18px] font-semibold">
-                {(item.price["$numberDecimal"] * item.quantity).toFixed(2)}€
+                {item.price["$numberDecimal"]}€
               </div>
             </div>
           ))}
