@@ -13,4 +13,6 @@ export default function SuccessLayout({ children }) {
   }, [pathname]);
 
   return <>{children}</>;
+
+  //test
 }
