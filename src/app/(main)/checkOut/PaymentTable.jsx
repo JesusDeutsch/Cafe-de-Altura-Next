@@ -46,9 +46,6 @@ const PaymentTable = ({ onFormChange }) => {
     onFormChange({ ...watch(), paymentMethod: value }); // Actualiza el formulario al cambiar el método de pago
   };
 
-  const handleAccordionToggle = (value) => {
-    setOpenItem(openItem === value ? null : value);
-  };
 
   const onSubmit = (data) => {
     localStorage.setItem("formData", JSON.stringify(data));
