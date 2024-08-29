@@ -10,15 +10,15 @@ import { MoveRight } from 'lucide-react';
 
 const Faq = () => {
   return (
-    <div className="w-auto min-h-[421px] flex flex-col items-center justify-center bg-[#2a5b45] gap-6 py-[48px] px-386px">
-        <h2 className="flex w-[228px] h-[93px] text-2xl font-medium leading-7 text-[white] ">
+    <div className="w-auto min-h-[421px] flex flex-col items-center justify-center bg-[#2a5b45] gap-6 pt-[48px]  px-386px">
+        <h2 className="flex w-[228px] h-[28px] text-2xl font-medium leading-7 text-[white] ">
           Preguntas frecuentes
         </h2>
 
         <Accordion
           type="multiple"
           collapsible
-          className="flex flex-col items-center justify-center w-[668px] min-h-[216px] gap-4 "
+          className="flex flex-col items-center justify-center w-[668px] min-h-[216px] gap-4 pt-[24px] "
         >
           <AccordionItem
             value="item-1"

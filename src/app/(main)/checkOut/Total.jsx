@@ -1,9 +1,8 @@
 'use client'
 import React, { useContext } from 'react'
 import { DataContext } from "../../contexts/DataContext";
-import PaymentTable from './PaymentTable';
 
-const Total = ({ onSubmit, handleSubmit }) => {
+const Total = ({ onSubmit, handleSubmit, isFormValid }) => {
     const { getCartTotal, getShippingCost, shippingOption } = useContext(DataContext);
   
     const subtotal = getCartTotal().toFixed(2);
@@ -12,8 +11,8 @@ const Total = ({ onSubmit, handleSubmit }) => {
     const iva = (parseFloat(total) / 100 * 21).toFixed(2);
 
     return (
-        <div className='flex flex-col bg-[#F7F5F3] w-[384px] h-[280px] gap-4 p-6'>
-            <div className='flex flex-col w-[336px] h-[176px] gap-2'>
+        <div className='flex flex-col rounded-[10px] bg-[#F7F5F3] w-[384px] h-[300px] gap-4 p-6'>
+            <div className='flex flex-col w-[336px] h-[176px] gap-4'>
                 <h3 className='font-semibold text-lg text-black'>
                     Total del carrito
                 </h3>
@@ -41,15 +40,23 @@ const Total = ({ onSubmit, handleSubmit }) => {
                   </div>
                 </div>
                 </div>
-          <div className='flex items-center justify-center gap-4 w-[310px] h-10 mt-5'>
-            <button type='button' className='flex items-center justify-center min-w-[129px] h-10 bg-[#2A5B45] rounded-[4px]' onClick={handleSubmit(onSubmit)}>
-                <p className='flex text-white h-4 font-semibold leading-4'>
-                Pagar y realizar pedido
-                </p>
-            </button>
+          <div className='flex gap-2 w-[310px] h-10 mt-5 pb-6'>
+          <button 
+                    type='button' 
+                    className={`flex items-center justify-center w-[196px] h-10 rounded-[4px] ${
+                        isFormValid 
+                        ? 'bg-[#2A5B45] text-white' 
+                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    }`}
+                    onClick={handleSubmit(onSubmit)}
+                    disabled={!isFormValid}
+                >
+                    <p className='flex h-4 font-semibold leading-4'>
+                        Pagar y realizar pedido
+                    </p>
+                </button>
          
           </div>
-          <PaymentTable onFormChange={handleFormChange} />
         </div>
       );
       

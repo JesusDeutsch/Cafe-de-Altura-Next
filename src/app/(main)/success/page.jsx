@@ -4,7 +4,7 @@ import Order from './Order'
 const success = () => {
 
 return(
-  <div className=''>
+  <div className='w-full h-[97.5vh]'>
     <Order/>
   </div>
 )

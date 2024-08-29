@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react'
+import {  MoveRight } from 'lucide-react'
 import Image from 'next/image'
 import coffeeShop from '../../../public/home-page/featureSection/image.png'
 
@@ -14,7 +14,7 @@ const FeatureSection = () => {
         </p>
         <div className='flex items-center justify-center w-[118px] h-6'>
           <a href="#"
-            className=' flex items-center gap-4'><p className='w-[78px] h-4 font-semibold text-sm leading-4 text-black underline'>Cómo llegar</p><ArrowRight color="black" width={24} height={24}/>
+            className=' flex items-center gap-4'><p className='w-[78px] h-4 font-semibold text-sm leading-4 text-black underline'>Cómo llegar</p><MoveRight color="black" width={24} height={24}/>
         
           </a>
         </div>

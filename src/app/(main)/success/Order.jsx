@@ -15,7 +15,7 @@ const Order = () => {
   const iva = ((parseFloat(total) / 100) * 21).toFixed(2);
 
   return (
-    <div className="flex flex-col w-full h-[1055px] items-center  p-10 gap-6 pt-[104px]">
+    <div className="flex flex-col w-full h-auto items-center  p-10 gap-6 pt-[104px]">
       <ClipboardCheck
         size={64}
         style={{

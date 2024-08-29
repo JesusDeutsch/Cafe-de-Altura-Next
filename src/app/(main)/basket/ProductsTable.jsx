@@ -56,8 +56,11 @@ const ProductsTable = () => {
                 </div>
               </div>
 
-              <div className="w-[54px] h-[24px] leading-6 size-[18px] font-semibold">
-                {item.price["$numberDecimal"]}€
+              <div className="flex items-center w-[60px] h-[24px] leading-6 size-[18px] font-semibold">
+                <p className="flex">
+                {item.price["$numberDecimal"]} €
+
+                </p>
               </div>
             </div>
           ))}

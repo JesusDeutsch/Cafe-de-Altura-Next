@@ -10,11 +10,11 @@ const ShoppingCart = () => {
     useContext(DataContext);
 
   return (
-    <div className="w-full h-screen pt-8 flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center w-full h-screen pt-8  gap-4 z-20">
       <h2 className="text-2xl font-semibold">Carrito de Compras</h2>
       
       {cart.length > 0 ? (
-        <div className="w-full flex flex-col gap-4 overflow-y-scroll scroll-no-spinner pb-20">
+        <div className="w-full flex flex-col gap-4 overflow-auto  pb-20">
           {cart.map((item, index) => (
             <div
               key={index}
@@ -64,12 +64,12 @@ const ShoppingCart = () => {
 
           <button
             onClick={handleClearCart}
-            className="bg-red-500 text-white px-4 py-2 rounded mt-4"
+            className=" bg-red-500 text-white px-4 py-2 rounded mt-4"
           >
             Vaciar Carrito
           </button>
 
-          <div className="flex items-center justify-center bg-[#2a5b45b2] text-white px-4 py-2 rounded mt-4">
+          <div className="flex items-center justify-center bg-[#2a5b45] text-white px-4 py-2 rounded mt-4">
             <Link href="/basket">
 
               Ir a Cesta
@@ -78,7 +78,7 @@ const ShoppingCart = () => {
 
           </div>
 
-          <div className="mt-4">
+          <div className="relative mt-4 ">
             <p className="text-xl font-semibold">
               Total: {getCartTotal().toFixed(2)}€
             </p>

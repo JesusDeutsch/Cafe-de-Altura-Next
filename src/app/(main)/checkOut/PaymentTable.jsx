@@ -17,6 +17,7 @@ const PaymentTable = ({ onFormChange }) => {
     watch,
     reset,
     formState: { errors },
+    formState: { isValid },
   } = useForm();
 
   const router = useRouter();
@@ -63,7 +64,7 @@ const PaymentTable = ({ onFormChange }) => {
 
         <div className="flex flex-col w-[776px] h-auto gap-4">
           {/* Tarjeta de débito */}
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col  justify-center">
             <div className="flex items-center gap-4 w-full cursor-pointer">
               <input
                 name="acordeon"
@@ -77,10 +78,10 @@ const PaymentTable = ({ onFormChange }) => {
               />
               <label
                 htmlFor="debitCard"
-                className="flex items-center w-[665px] h-9 gap-1 cursor-pointer"
+                className="flex flex-col w-[665px] h-auto gap-1 cursor-pointer"
                 onClick={(e) => handlePaymentChange(e, "debitCard")}
               >
-                <div>
+                <div className="flex flex-col">
                   <p className="flex font-semibold text-[14px] h-4">
                     Tarjeta de débito
                   </p>
@@ -105,12 +106,12 @@ const PaymentTable = ({ onFormChange }) => {
                     {...register("owner", {
                       required: {
                         value: true,
-                        message: "Titular es requerido",
+                        message: "Campo requerido",
                       },
                     })}
                   />
                   {errors.owner && (
-                    <span className="block w-[210px] text-red-600 text-sm">
+                    <span className="block w-[210px] text-red-600 text-xs">
                       {errors.owner.message}
                     </span>
                   )}
@@ -129,12 +130,12 @@ const PaymentTable = ({ onFormChange }) => {
                     {...register("numberCard", {
                       required: {
                         value: true,
-                        message: "Número de la tarjeta es requerido",
+                        message: "Campo requerido",
                       },
                     })}
                   />
                   {errors.numberCard && (
-                    <span className="block w-[210px] text-red-600 text-sm">
+                    <span className="block w-[210px] text-red-600 text-xs">
                       {errors.numberCard.message}
                     </span>
                   )}
@@ -154,44 +155,49 @@ const PaymentTable = ({ onFormChange }) => {
                       {...register("expirationDate", {
                         required: {
                           value: true,
-                          message: "Fecha de caducidad es requerida",
+                          message: "Campo requerido",
                         },
                       })}
                     />
                     {errors.expirationDate && (
-                      <span className="block w-[210px] text-red-600 text-sm">
+                      <span className="block w-[210px] text-red-600 text-xs">
                         {errors.expirationDate.message}
                       </span>
                     )}
                   </div>
 
                   <div className="flex flex-col w-[128px] h-[55px] gap-[3px] pt-2">
-                    <label htmlFor="cvc" className=" h-4">
-                      <p className="flex min-w-9 font-normal text-xs text-gray-700">
-                        CVC
-                      </p>
-                    </label>
-                    <input
-                      className="w-[128px] min-h-[36px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md hover:border-[#9b9ea3] focus:outline-[#3f8f6b] focus:shadow-[0px_1px_2px_0px_#0000000d] no-spinner"
-                      type="text"
-                      {...register("cvc", {
-                        required: true,
-                        pattern: /^\d{3}$/,
-                        maxLength: 3,
-                      })}
-                      placeholder="123"
-                      maxLength={3}
-                      inputMode="numeric"
-                      onInput={(e) => {
-                        e.target.value = e.target.value.replace(/\D/g, "");
-                      }}
-                    />
-                    {errors.cvc && (
-                      <span className="block w-[210px] text-red-600 text-sm">
-                        {errors.cvc.message}
-                      </span>
-                    )}
-                  </div>
+  <label htmlFor="cvc" className="h-4">
+    <p className="flex min-w-9 font-normal text-xs text-gray-700">CVC</p>
+  </label>
+  <input
+    className="w-[auto] min-h-[36px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md hover:border-[#9b9ea3] focus:outline-[#3f8f6b] focus:shadow-[0px_1px_2px_0px_#0000000d] no-spinner"
+    type="text"
+    {...register("cvc", {
+      required: "Campo requerido",
+      pattern: {
+        value: /^\d{3}$/,
+        message: "CVC debe tener 3 dígitos numéricos",
+      },
+      maxLength: {
+        value: 3,
+        message: "CVC no debe tener más de 3 dígitos",
+      },
+    })}
+    placeholder="123"
+    maxLength={3}
+    inputMode="numeric"
+    onInput={(e) => {
+      e.target.value = e.target.value.replace(/\D/g, "");
+    }}
+  />
+  {errors.cvc && (
+    <span className="block w-[128px] text-red-600 text-xs">
+      {errors.cvc.message}
+    </span>
+  )}
+</div>
+
                 </div>
               </div>
             )}
@@ -199,7 +205,7 @@ const PaymentTable = ({ onFormChange }) => {
 
           {/* Transferencia bancaria */}
           <div className="flex flex-col">
-            <div className="flex items-center w-full cursor-pointer">
+          <div className="flex items-center gap-4 w-full cursor-pointer">
               <input
                 name="acordeon"
                 type="radio"
@@ -208,18 +214,18 @@ const PaymentTable = ({ onFormChange }) => {
                 {...register("paymentMethod")}
                 checked={selectedPayment === "bankTransfer"}
                 onChange={(e) => handlePaymentChange(e, "bankTransfer")}
-                className="flex items-centerw-4 h-4 accent-[#2A5B45]"
+                className="w-4 h-4 accent-[#2A5B45]"
               />
               <label
                 htmlFor="bankTransfer"
-                className="flex flex-col w-[665px] h-auto gap-1 pb-0 cursor-pointer"
+                className="flex flex-col w-[665px] h-auto gap-1 cursor-pointer"
                 onClick={(e) => handlePaymentChange(e, "bankTransfer")}
               >
                 <p className="flex font-semibold text-[14px] h-4">
                   Transferencia bancaria a la cuenta ES12 1234 1234 123457890
                 </p>
                 {selectedPayment === "bankTransfer" && (
-                  <div className="w-[620px] h-auto font-normal text-xs leading-4 text-[#2b2a2b] border-none pt-4">
+                  <div className="w-[620px] h-auto font-normal text-xs leading-4 text-[#2b2a2b] border-none ">
                     <p className="flex item-center font-normal w-auto h-4 text-[14px]">
                       Será necesario recibir el comprobante de la transferencia
                       para preparar tu pedido.
@@ -232,7 +238,7 @@ const PaymentTable = ({ onFormChange }) => {
 
           {/* Bizum */}
           <div className="flex flex-col">
-            <div className="flex items-center gap-4 w-full cursor-pointer">
+            <div className="flex items-center w-full gap-4  cursor-pointer">
               <input
                 type="radio"
                 id="bizum"
@@ -244,11 +250,28 @@ const PaymentTable = ({ onFormChange }) => {
               />
               <label
                 htmlFor="bizum"
-                className="flex items-center w-[665px] h-9 cursor-pointer gap-4"
+                className="flex flex-col  w-[776px] h-9 "
                 onClick={(e) => handlePaymentChange(e, "bizum")}
               >
+                <div className="flex items-center w-[665px] h-9 cursor-pointer gap-4">
                 <p className="flex font-semibold text-[14px] h-4">Bizum</p>
                 <Image src={bizum} alt="Bizum" width={70} height={30} />
+                </div>
+
+
+                {selectedPayment === "bizum" && (
+                  <div className="w-[620px] h-auto font-normal text-xs leading-4 text-[#2b2a2b] border-none ">
+                    <p className="flex item-center font-normal w-auto h-4 text-[14px]">
+                      Será necesario recibir el comprobante de la transferencia
+                      para preparar tu pedido.
+                    </p>
+                  </div>
+                )}
+
+
+
+
+                
               </label>
             </div>
           </div>
@@ -269,12 +292,12 @@ const PaymentTable = ({ onFormChange }) => {
             type="text"
             className="w-[521px] min-h-[34px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md border-solid hover:border-[#9b9ea3]  focus:outline-[#3f8f6b] solid 2px focus:shadow-[0px_1px_2px_0px_#0000000d]"
             {...register("firstName", {
-              required: { value: true, message: "Nombre es requerido" },
+              required: { value: true, message: "Campo requerido" },
             })}
           />
 
           {errors.firstName && (
-            <span className="block w-[210px] text-red-600 text-sm">
+            <span className="block w-[210px] text-red-600 text-xs">
               {errors.firstName.message}
             </span>
           )}
@@ -291,12 +314,12 @@ const PaymentTable = ({ onFormChange }) => {
             type="text"
             className="w-[521px] min-h-[34px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md border-solid hover:border-[#9b9ea3]  focus:outline-[#3f8f6b] solid 2px focus:shadow-[0px_1px_2px_0px_#0000000d]"
             {...register("lastName", {
-              required: { value: true, message: "Apellidos requeridos" },
+              required: { value: true, message: "Campo requerido" },
             })}
           />
 
           {errors.lastName && (
-            <span className="block w-[210px] text-red-600 text-sm">
+            <span className="block w-[210px] text-red-600 text-xs">
               {errors.lastName.message}
             </span>
           )}
@@ -312,14 +335,14 @@ const PaymentTable = ({ onFormChange }) => {
           <input
             type="number"
             {...register("numberPhone", {
-              required: { value: true, message: "Teléfono es requerido" },
+              required: { value: true, message: "Campo requerido" },
             })}
             className="w-[521px] min-h-[34px] border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md border-solid hover:border-[#9b9ea3]  focus:outline-[#3f8f6b] solid-[2px] focus:shadow-[0px_1px_2px_0px_#0000000d] outline-none px-2.5 no-spinner"
             placeholder="+34 600 6000 600"
           />
 
           {errors.numberPhone && (
-            <span className="block w-[210px] text-red-600 text-sm">
+            <span className="block w-[210px] text-red-600 text-xs">
               {errors.numberPhone.message}
             </span>
           )}
@@ -335,7 +358,7 @@ const PaymentTable = ({ onFormChange }) => {
           <input
             type="email"
             {...register("email", {
-              required: { value: true, message: "Correo es requerido" },
+              required: { value: true, message: "Campo requerido" },
               pattern: {
                 value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
                 message: "Correo no válido",
@@ -345,7 +368,7 @@ const PaymentTable = ({ onFormChange }) => {
             className="w-[521px] min-h-[34px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md border-solid hover:border-[#9b9ea3]  focus:outline-[#3f8f6b] solid-[2px] focus:shadow-[0px_1px_2px_0px_#0000000d]"
           />
           {errors.email && (
-            <span className="block w-[210px] text-red-600 text-sm">
+            <span className="block w-[210px] text-red-600 text-xs">
               {errors.email.message}
             </span>
           )}
@@ -359,9 +382,9 @@ const PaymentTable = ({ onFormChange }) => {
             País
           </label>
           <Controller
-            name="country"
+            {...register("country")}
             control={control}
-            rules={{ required: "El país es requerido" }}
+            rules={{ required: "Campo requerido" }}
             render={({ field }) => (
               <Select
                 {...field}
@@ -404,66 +427,71 @@ const PaymentTable = ({ onFormChange }) => {
             )}
           />
           {errors.country && (
-            <span className="text-red-600 text-sm">
+            <span className="text-red-600 text-xs">
               {errors.country.message}
             </span>
           )}
         </div>
 
         <div className="flex w-[521px] items-center gap-6">
-          <div className="flex flex-col w-[470px] h-[54px] gap-1">
-            <label
-              htmlFor="Population"
-              className="w-24 h-4 font-normal text-xs leading-4 text-gray-700"
-            >
-              Población
-            </label>
-            <input
-              type="text"
-              className="w-[249px] min-h-[36px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md border-solid hover:border-[#9b9ea3]  focus:outline-[#3f8f6b] solid 2px focus:shadow-[0px_1px_2px_0px_#0000000d]"
-              {...register("Population", {
-                required: { value: true, message: "Población requerida" },
-              })}
-            />
+  {/* Población Input */}
+  <div className="flex flex-col w-[470px] h-[54px] gap-1">
+    <label
+      htmlFor="Population"
+      className="w-24 h-4 font-normal text-xs leading-4 text-gray-700"
+    >
+      Población
+    </label>
+    <input
+      type="text"
+      className="w-[249px] min-h-[36px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md border-solid hover:border-[#9b9ea3] focus:outline-[#3f8f6b] focus:shadow-[0px_1px_2px_0px_#0000000d]"
+      {...register("Population", {
+        required: "Campo requerido",
+      })}
+    />
+    {errors.Population && (
+      <span className="block w-[210px] text-red-600 text-xs">
+        {errors.Population.message}
+      </span>
+    )}
+  </div>
 
-            {errors.Population && (
-              <span className="block w-[210px] text-red-600 text-sm">
-                {errors.Population.message}
-              </span>
-            )}
-          </div>
-
-          <div className="flex flex-col w-[470px] h-[54px] gap-1">
-            <label
-              htmlFor="CP"
-              className="w-24 h-4 font-normal text-xs leading-4 text-gray-700"
-            >
-              CP
-            </label>
-            <input
-              type="text"
-              {...register("CP", {
-                required: true,
-                message: "CP es requerido",
-                pattern: /^\d{5}$/,
-                maxLength: 5,
-              })}
-              placeholder="123"
-              maxLength={5}
-              inputMode="numeric"
-              className="w-[249px] min-h-[36px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md border-solid hover:border-[#9b9ea3]  focus:outline-[#3f8f6b] solid 2px focus:shadow-[0px_1px_2px_0px_#0000000d]"
-              onInput={(e) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-              }}
-            />
-
-            {errors.CP && (
-              <span className="block w-[210px] text-red-600 text-sm">
-                {errors.CP.message}
-              </span>
-            )}
-          </div>
-        </div>
+  {/* CP Input */}
+  <div className="flex flex-col w-[470px] h-[54px] gap-1">
+    <label
+      htmlFor="CP"
+      className="w-24 h-4 font-normal text-xs leading-4 text-gray-700"
+    >
+      CP
+    </label>
+    <input
+      type="text"
+      {...register("CP", {
+        required: "CP es requerido",
+        pattern: {
+          value: /^\d{5}$/,
+          message: "CP debe tener 5 dígitos",
+        },
+        maxLength: {
+          value: 5,
+          message: "CP debe tener un máximo de 5 dígitos",
+        },
+      })}
+      placeholder="12345"
+      maxLength={5}
+      inputMode="numeric"
+      className="w-[249px] min-h-[36px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md border-solid hover:border-[#9b9ea3] focus:outline-[#3f8f6b] focus:shadow-[0px_1px_2px_0px_#0000000d]"
+      onInput={(e) => {
+        e.target.value = e.target.value.replace(/\D/g, "");
+      }}
+    />
+    {errors.CP && (
+      <span className="block w-[210px] text-red-600 text-xs">
+        {errors.CP.message}
+      </span>
+    )}
+  </div>
+</div>
 
         <div className="flex w-[521px] gap-6  ">
           <div className="flex flex-col w-[112.25px] h-[55px] gap-1">
@@ -477,12 +505,12 @@ const PaymentTable = ({ onFormChange }) => {
               type="text"
               className="w-[112.25px] min-h-[34px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md border-solid hover:border-[#9b9ea3]  focus:outline-[#3f8f6b] solid 2px focus:shadow-[0px_1px_2px_0px_#0000000d]"
               {...register("street", {
-                required: { value: true, message: "Calle es requerida" },
+                required: { value: true, message: "Campo requerido" },
               })}
             />
 
             {errors.street && (
-              <span className="block w-[210px] text-red-600 text-sm">
+              <span className="block w-[210px] text-red-600 text-xs">
                 {errors.street.message}
               </span>
             )}
@@ -499,12 +527,12 @@ const PaymentTable = ({ onFormChange }) => {
               type="text"
               className="w-[112.25px] min-h-[34px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md border-solid hover:border-[#9b9ea3]  focus:outline-[#3f8f6b] solid 2px focus:shadow-[0px_1px_2px_0px_#0000000d]"
               {...register("streetNumber", {
-                required: { value: true, message: "Nº es requerido" },
+                required: { value: true, message: "Campo requerido" },
               })}
             />
 
             {errors.streetNumber && (
-              <span className="block w-[210px] text-red-600 text-sm">
+              <span className="block w-[210px] text-red-600 text-xs">
                 {errors.streetNumber.message}
               </span>
             )}
@@ -521,12 +549,12 @@ const PaymentTable = ({ onFormChange }) => {
               type="text"
               className="w-[112.25px] min-h-[34px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md border-solid hover:border-[#9b9ea3]  focus:outline-[#3f8f6b] solid 2px focus:shadow-[0px_1px_2px_0px_#0000000d]"
               {...register("floor", {
-                required: { value: true, message: "Piso requerido" },
+                required: { value: true, message: "Campo requerido" },
               })}
             />
 
             {errors.floor && (
-              <span className="block w-[210px] text-red-600 text-sm">
+              <span className="block w-[210px] text-red-600 text-xs">
                 {errors.floor.message}
               </span>
             )}
@@ -543,19 +571,19 @@ const PaymentTable = ({ onFormChange }) => {
               type="text"
               className="w-[112.25px] min-h-[34px] px-2.5 border border-gray-300 shadow-[0px_1px_2px_0px_#0000000d] rounded-md border-solid hover:border-[#9b9ea3]  focus:outline-[#3f8f6b] solid 2px focus:shadow-[0px_1px_2px_0px_#0000000d]"
               {...register("door", {
-                required: { value: true, message: "Puerta es requerida" },
+                required: { value: true, message: "Campo requerido" },
               })}
             />
 
             {errors.door && (
-              <span className="block w-[210px] text-red-600 text-sm">
+              <span className="block w-[210px] text-red-600 text-xs">
                 {errors.door.message}
               </span>
             )}
           </div>
         </div>
       </div>
-      <Total handleSubmit={handleSubmit} onSubmit={onSubmit} />
+      <Total handleSubmit={handleSubmit} onSubmit={onSubmit} isFormValid={isValid}/>
     </form>
   );
 };

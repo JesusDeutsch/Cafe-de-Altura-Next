@@ -12,6 +12,6 @@ export default function SuccessLayout({ children }) {
     }
   }, [pathname]);
 
-  return <>{children}</>;
+  return <success>{children}</success>;
 
 }
