@@ -1,6 +1,6 @@
 import { Mail, Phone } from "lucide-react";
 import React from "react";
-import SectionForm from "../(main)/SectionForm"
+import SectionForm from "../(main)/SectionForm";
 
 const SplitTwoTone = () => {
   return (
@@ -8,7 +8,9 @@ const SplitTwoTone = () => {
       <div className="flex items-center w-[1200px] h-[652px] gap-6">
         <div className="flex flex-col items-center justify-center w-[588px] h-80 gap-8">
           <div className="flex flex-col w-[588px] h-[68px] gap-3">
-            <h3 className="w-[588px] h-6 font-semibold text-lg leading-6 text-gray-900">Entra en contacto con nosotros</h3>
+            <h3 className="w-[588px] h-6 font-semibold text-lg leading-6 text-gray-900">
+              Entra en contacto con nosotros
+            </h3>
             <p className="w-[588px] h-8 font-normal text-sm leading-4 text-gray-500">
               Si tienes dudas, ponte en contacto con nosotros a través del
               formulario y te responderemos lo antes posible.
@@ -24,22 +26,25 @@ const SplitTwoTone = () => {
               Springfield, OR 12345
             </p>
             <div className="flex items-center w-[588px] h-6 gap-2">
-            <Phone  width={24} height={24}/>
+              <Phone width={24} height={24} />
               <p>+1 (555) 123-4567</p>
             </div>
 
             <div className="flex items-center w-[588px] h-6 gap-3">
-              <Mail width={24} height={24}/>
+              <Mail width={24} height={24} />
               <p>support@example.com</p>
             </div>
             <p>
-              ¿Buscas un trabajo? <a href="#" className="text-black font-semibold">Ver nuestras ofertas.</a>
+              ¿Buscas un trabajo?{" "}
+              <a href="#" className="text-black font-semibold">
+                Ver nuestras ofertas.
+              </a>
             </p>
           </div>
         </div>
-          <div><SectionForm/></div>
-
-        
+        <div>
+          <SectionForm />
+        </div>
       </div>
     </div>
   );
