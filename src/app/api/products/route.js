@@ -2,9 +2,8 @@ import { NextResponse } from 'next/server';
 import clientPromise from '../../../../lib/mongodb.mjs';
 import { ObjectId } from 'mongodb';
 
-// Función auxiliar para añadir encabezados CORS
 function addCorsHeaders(response) {
-  response.headers.set('Access-Control-Allow-Origin', '*'); // Permite cualquier origen
+  response.headers.set('Access-Control-Allow-Origin', '*'); 
   response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
   return response;
@@ -36,7 +35,6 @@ export async function POST(request) {
   }
 }
 
-// Manejar solicitudes OPTIONS para preflight CORS
 export async function OPTIONS() {
   return addCorsHeaders(new NextResponse(null, { status: 200 }));
 }

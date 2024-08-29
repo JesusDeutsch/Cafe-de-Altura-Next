@@ -1,6 +1,6 @@
 'use client'
 import React, { useContext } from 'react'
-import { DataContext } from "../../contexts/DataContext";
+import { DataContext } from "../app/contexts/DataContext";
 
 const Total = ({ onSubmit, handleSubmit, isFormValid }) => {
     const { getCartTotal, getShippingCost, shippingOption } = useContext(DataContext);
@@ -43,13 +43,9 @@ const Total = ({ onSubmit, handleSubmit, isFormValid }) => {
           <div className='flex gap-2 w-[310px] h-10 mt-5 pb-6'>
           <button 
                     type='button' 
-                    className={`flex items-center justify-center w-[196px] h-10 rounded-[4px] ${
-                        isFormValid 
-                        ? 'bg-[#2A5B45] text-white' 
-                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    }`}
+                    className="flex items-center justify-center w-[196px] h-10 rounded-[4px] bg-[#2A5B45] text-white" 
+                                          
                     onClick={handleSubmit(onSubmit)}
-                    disabled={!isFormValid}
                 >
                     <p className='flex h-4 font-semibold leading-4'>
                         Pagar y realizar pedido

@@ -4,12 +4,9 @@ import FooterWrapper from "../FooterWrapper";
 import ListCoffees from "./ListCoffees";
 
 const Shop = () => {
-
-
-
   return (
     <div>
-      <ListCoffees/>
+      <ListCoffees />
       <CardsConditions />
       <FooterWrapper />
     </div>

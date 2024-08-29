@@ -7,31 +7,22 @@ import SectionContact from "./SectionContact";
 import FooterWrapper from "./FooterWrapper";
 import ShoppingCart from "@/components/ShoppingCart";
 
-
 const Home = () => {
-  
-
   return (
     <div className=" w-auto pt-[48px]">
-      <Hero/>
+      <Hero />
 
-      <CardsConditions/>
+      <CardsConditions />
 
-      <CardsCoffee/>
+      <CardsCoffee />
 
-      <Faq/>
+      <Faq />
 
-      <FeatureSection/>
+      <FeatureSection />
 
-      <SectionContact/>
+      <SectionContact />
 
-      <FooterWrapper/>
-
-      
-
-
-  
-
+      <FooterWrapper />
     </div>
   );
 };
