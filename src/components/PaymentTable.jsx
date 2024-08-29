@@ -5,7 +5,7 @@ import Select from "react-select";
 import countryList from "react-select-country-list";
 import Image from "next/image";
 import bizum from "../../../../public/home-page/checkOut/bizum.png";
-import Total from "./Total";
+import Total from "@/components/Total";
 import { usePathname, useRouter } from "next/navigation";
 
 const PaymentTable = ({ onFormChange }) => {
@@ -23,7 +23,6 @@ const PaymentTable = ({ onFormChange }) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  console.log("ESTE ES PATHNAME", pathname);
 
   if (pathname.includes("aleman")) {
     console.log("ENTRO AL IF");
@@ -467,7 +466,7 @@ const PaymentTable = ({ onFormChange }) => {
     <input
       type="text"
       {...register("CP", {
-        required: "CP es requerido",
+        required: "Campo requerido",
         pattern: {
           value: /^\d{5}$/,
           message: "CP debe tener 5 dígitos",

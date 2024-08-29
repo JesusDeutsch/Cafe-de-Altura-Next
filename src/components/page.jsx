@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from "react";
-import PaymentTable from "./PaymentTable";
+import PaymentTable from "@/components/PaymentTable";
 
 
 const CheckOut = () => {
@@ -9,7 +9,7 @@ const CheckOut = () => {
 
   const handleFormChange = (data) => {
     setFormData(data);
-  };3
+  };
 
 
   
