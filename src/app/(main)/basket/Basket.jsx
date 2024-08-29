@@ -15,7 +15,7 @@ const Basket = () => {
     <div className=" flex flex-col w-full h-full items-center justify-center  p-10 gap-6">
       
       <h2 className=" w-[94px] h-[28px] text-[#2A5B45] leading-7 font-medium pt-[104px]">
-        Cesta({itemsCount})
+        Cesta ({itemsCount})
       </h2>
      
      

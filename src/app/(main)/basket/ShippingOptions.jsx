@@ -42,7 +42,7 @@ const ShippingOptions = () => {
             <div className="font-normal w-[202px] h-4 text-[14px] leading-4">Opción estándar sin seguimiento</div>
           </label>
           <span className="w-[63px] h-6 text-[18px] font-semibold leading-4 ml-auto">
-            {selectedOption === 'standard' ? 'GRATIS' : '0,00 €'}
+            GRATIS
           </span>
         </div>
 
@@ -60,7 +60,7 @@ const ShippingOptions = () => {
               Recibe tu pedido en las siguientes 24h (Para pedidos realizados antes de las 13:00).
             </div>
           </label>
-          <span className="w-[63px] h-6 text-[18px] font-semibold leading-4 ml-auto">9,00 €</span>
+          <span className="w-[63px] h-6 text-[18px] font-semibold leading-4 ml-auto">9.00 €</span>
         </div>
       </form>
     </div>
